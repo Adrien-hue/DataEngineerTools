@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.9.13
 
 RUN mkdir /home/dev/ && mkdir /home/dev/code/
 
@@ -9,6 +9,7 @@ WORKDIR /home/dev/code/
 
 COPY . .
 RUN  pip install --upgrade pip &&  pip install pipenv && pipenv install --skip-lock
+RUN pip install jupyter
 
 CMD ["pipenv", "run", "jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
 #CMD ["/bin/bash"]
